@@ -1,5 +1,23 @@
+include mixins/track
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .site-title
+    a(href='/')
+        img(src='/images/logo.png', alt='hadapptify')
+  .user-info Logged in as <strong>#{username}</strong>
+  .active-users
+    |Active users: #{active_users.join(", ")}
+  include search_box
+  if now_playing
+    h2 Now Playing
+    .now-playing
+        +track_name(now_playing)
+  if queue
+    h2 Queue
+    each element in queue._elements
+        +queue_element_info(element)
+  if tracks
+    h2 Search Results
+    each track in tracks
+        +track_info(track)

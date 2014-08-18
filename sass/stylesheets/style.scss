@@ -1,0 +1,87 @@
+@import url(http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700);
+
+$font-stack: 'Quattrocento Sans', Helvetica, sans-serif;
+$primary-color: #333;
+$link-color: #1e7bc2;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+a {
+  color: $link-color;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  font-size: 1em;
+}
+
+input {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #eee;
+  margin-bottom: 1em;
+  font-size: 1.5em;
+  font-family: $font-stack;
+  outline: none;
+}
+
+button {
+  border: 1px solid #eee;
+  padding: 0.5em;
+  font-size: 1.5em;
+  background-color: #eee;
+  color: #333;
+  font-family: $font-stack;
+  right: 0;
+  width: 100%;
+}
+
+.queued-track {
+  list-style-type: none;
+}
+
+li {
+    display: inline;
+    padding: 0 0.5em 0 0;
+}
+
+.search-button {
+  border-radius: 0 5px 5px 0;
+}
+
+.search-input {
+  display: flex;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-button {
+  flex-basis: 200px;
+}
+
+.site-title {
+  text-align: center;
+  font: 300% $font-stack;
+}
+
+.user-info {
+  font-size: 0.9em;
+  padding: 10px 0px 5px 0px;
+  text-align: right;
+}
+
+.active-users {
+    font-size: 0.8em;
+    padding: 5px 0px 10px 0px;
+    text-align: right;
+}
+
+.now-playing {
+    font-size: 1.2em;
+}

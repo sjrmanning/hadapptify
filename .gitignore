@@ -1,3 +1,11 @@
+# Node-spotify and spotify specific stuff
+spotify_appkey.key
+cache
+trace.txt
+
+# Config
+config.js
+
 # Logs
 logs
 *.log
@@ -27,3 +35,4 @@ public/vendor
 *.css
 *min.js
 .ruby-version
+settings

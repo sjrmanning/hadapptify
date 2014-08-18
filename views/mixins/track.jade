@@ -1,0 +1,35 @@
+mixin track_title(track)
+    -var artists = '';
+    -var artist_count = 0;
+    each artist in track.artists
+        if artist_count > 0
+            -artists += ", ";
+        -artists += artist.name;
+        -artist_count += 1;
+    |#{artists} - #{track.name}
+
+mixin track_info(track)
+    div.track
+        +track_title(track)
+        |&nbsp;
+        a(href='/tracks/add/#{track.link}') Add Track
+
+mixin queue_element_info(element)
+    -var track = element.track
+    -var artists = ''
+    each artist in track.artists
+        -artists += artist.name
+    div.queued-track
+        li
+            +track_title(track)
+        li|(#{element.votes} votes)
+        li|added by #{element.added_by}
+        li
+            a(href='/tracks/upvote/#{track.link}') Upvote!
+
+mixin track_name(track)
+    -var artists = '';
+    each artist in track.artists
+        -artists += artist.name
+    div.track
+        +track_title(track)
