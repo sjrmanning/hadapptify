@@ -3,6 +3,9 @@ spotify_appkey.key
 cache
 trace.txt
 
+# Persistence db
+db
+
 # Config
 config.js
 

@@ -16,6 +16,7 @@
     "express": "~4.2.0",
     "express-session": "^1.7.5",
     "jade": "~1.3.0",
+    "level": "^0.18.0",
     "morgan": "~1.0.0",
     "node-sass": "^0.9.3",
     "node-spotify": "~0.6.0",
