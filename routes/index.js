@@ -12,13 +12,17 @@ router.get('/', function(req, res) {
     }
 
     client.queue._elements.sort(function (a, b) {
-        if (a.votes === 0 && b.votes === 0) {
-            return b.added_at - a.added_at;
-        }
         if (a.votes === b.votes) {
-            return a.last_voted_at - b.last_voted_at;
+            if (a.votes === 0) {
+                return a.added_at - b.added_at;
+            }
+            else {
+                return a.last_voted_at - b.last_voted_at;
+            }
         }
-        return b.votes - a.votes;
+        else {
+            return b.votes - a.votes;
+        }
     });
 
     var params = {
