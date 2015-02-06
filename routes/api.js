@@ -24,3 +24,15 @@ module.exports.search = function (req, res, next) {
 module.exports.queue = function (req, res, next) {
     res.json(client.queue);
 };
+
+module.exports.skip_track = function (req, res, next) {
+    client.skipTrack(req.session.user, function (result) {
+        res.json(result);
+    });
+};
+
+module.exports.pause = function (req, res, next) {
+    client.pausePlay(function (result) {
+        res.json(result);
+    });
+};

@@ -13,11 +13,12 @@ block content
     h2 Now Playing
     .now-playing
         +track_name(now_playing)
-  if queue
-    h2 Queue
-    each element in queue._elements
-        +queue_element_info(element)
   if tracks
     h2 Search Results
     each track in tracks
         +track_info(track)
+  if queue
+    h2 Queue
+    each element in queue._elements
+        +queue_element_info(element)
+
