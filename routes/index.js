@@ -32,8 +32,8 @@ router.get('/', function(req, res) {
         active_users: client.active_users
     };
 
-    if (req.param('search')) {
-        client.search(req.param('search'), function (result) {
+    if (req.query.search) {
+        client.search(req.query.search, function (result) {
             params.tracks = result.tracks;
             res.render('index', params);
         });
@@ -45,9 +45,9 @@ router.get('/', function(req, res) {
 
 // Login
 router.get('/login', function (req, res) {
-    if (req.param('user')) {
+    if (req.query.user) {
         // Login here and redirect.
-        var user = req.param('user');
+        var user = req.query.user;
         req.session.user = user;
         client.active_users.push(user);
         return res.redirect('/');

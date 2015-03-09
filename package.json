@@ -1,6 +1,6 @@
 {
     "name": "hadapptify",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Democratic Spotify-based music web app.",
     "author": {
         "name": "Simon Manning",
@@ -10,20 +10,21 @@
         "start": "node ./bin/www"
     },
     "repository": {
-        "type" : "git",
-        "url" : "http://github.com/stafu/hadapptify.git"
+        "type": "git",
+        "url": "https://github.com/stafu/hadapptify.git"
     },
     "dependencies": {
         "body-parser": "~1.0.0",
         "cookie-parser": "~1.0.1",
         "debug": "~0.7.4",
-        "express": "~4.2.0",
-        "express-session": "^1.7.5",
+        "express": "~4.12.2",
+        "express-session": "^1.10.3",
         "jade": "~1.3.0",
         "level": "^0.18.0",
         "morgan": "~1.0.0",
-        "node-sass": "^0.9.3",
-        "node-spotify": "~0.7.0",
+        "node-sass": "^2.0.1",
+        "node-sass-middleware": "^0.5.0",
+        "node-spotify": "~0.7.1",
         "priorityqueuejs": "^0.2.0",
         "static-favicon": "~1.0.0",
         "underscore": "^1.6.0"

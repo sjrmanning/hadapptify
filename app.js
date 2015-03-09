@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sass = require('node-sass');
+var sassMiddleware = require('node-sass-middleware');
 
 var config = require('./config');
 var routes = require('./routes/index');
@@ -27,7 +28,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(sass.middleware({
+app.use(sassMiddleware({
     src: __dirname + '/sass',
     dest: __dirname + '/public',
     debug: true,
