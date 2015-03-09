@@ -62,6 +62,7 @@ router.route('/api/upvote_track/:track_id').get(api.upvote_track);
 router.route('/api/search/:search_string').get(api.search);
 router.route('/api/queue').get(api.queue);
 router.route('/api/skip_track').get(api.skip_track);
+router.route('/api/pause').get(api.pause);
 
 // Tracks methods
 router.route('/tracks/add/:track_id').get(tracks.add_track);
