@@ -3,6 +3,7 @@ var router = express.Router();
 var client = require('../lib/client');
 var api = require('./api');
 var tracks = require('./tracks');
+var app = require('../app');
 
 // Home view
 router.get('/', function(req, res) {
@@ -29,7 +30,8 @@ router.get('/', function(req, res) {
         queue: client.queue,
         now_playing: client.now_playing,
         username: req.session.user,
-        active_users: client.active_users
+        active_users: client.active_users,
+        chatlog: app.chatlog
     };
 
     if (req.query.search) {

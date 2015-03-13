@@ -22,4 +22,8 @@ block content
     .queue
         each element in queue._elements
             +queue_element_info(element)
-
+  h2 Chat
+  ul(id="messages")
+    each msg in chatlog
+      p #{msg}
+  include chat_box

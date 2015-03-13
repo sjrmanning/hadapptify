@@ -15,15 +15,24 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var client = require('./lib/client');
 
+var sessionMiddleware = session({
+    secret: 'mount whateverest',
+    resave: true,
+    saveUninitialized: true
+});
+
+app.chatlog = [];
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(session({
-    secret: 'mount whateverest',
-    resave: true,
-    saveUninitialized: true
-}));
+var io = socket_io();
+io.use(function(socket, next) {
+    sessionMiddleware(socket.request, socket.request.res, next);
+});
+
+app.use(sessionMiddleware);
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -72,9 +81,16 @@ app.use(function(err, req, res, next) {
 });
 
 // Sockets
-app.io = socket_io();
+app.io = io;
 app.io.on('connection', function (socket) {
     console.log('New socket connection.');
+
+    socket.on('chat_msg', function (msg) {
+        var user = socket.request.session.user;
+        var formedMsg = '<' + user + '>' + ' ' + msg;
+        app.chatlog.push(formedMsg);
+        io.emit('append_chat', formedMsg);
+    });
 });
 
 // Exit handling.
@@ -88,4 +104,3 @@ var exitHandler = function(options) {
 
 process.on('exit', exitHandler.bind(null, {exit: true}));
 process.on('SIGINT', exitHandler.bind(null, {exit: true}));
-process.on('uncaughtException', exitHandler.bind(null, {exit: true}));

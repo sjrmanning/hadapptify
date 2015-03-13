@@ -16,3 +16,15 @@ socket.on('new_track', function(track) {
 socket.on('new_queue', function (data) {
     $('div.queue').html(data.html);
 });
+
+socket.on('append_chat', function (msg) {
+    $('#messages').append($('<p>').text(msg));
+});
+
+$(document).ready(function() {
+    $('#chatform').submit(function(){
+        socket.emit('chat_msg', $('#chat_input').val());
+        $('#chat_input').val('');
+        return false;
+    });
+});

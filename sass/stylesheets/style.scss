@@ -88,3 +88,13 @@ li {
 .now-playing {
     font-size: 1.2em;
 }
+
+.chat-input {
+  display: flex;
+  border-radius: 5px 0 0 5px;
+}
+
+.chat-button {
+  border-radius: 0 5px 5px 0;
+  flex-basis: 200px;
+}
