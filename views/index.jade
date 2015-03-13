@@ -19,6 +19,7 @@ block content
         +track_info(track)
   if queue
     h2 Queue
-    each element in queue._elements
-        +queue_element_info(element)
+    .queue
+        each element in queue._elements
+            +queue_element_info(element)
 

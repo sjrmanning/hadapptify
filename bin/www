@@ -12,3 +12,6 @@ var server = app.listen(app.get('port'), function() {
     console.log('hadapptify client initialised and ready.');
   });
 });
+
+// socket.io
+app.io.attach(server);

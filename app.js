@@ -1,4 +1,5 @@
 var express = require('express');
+var app = module.exports = express();
 var session = require('express-session');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -7,13 +8,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sass = require('node-sass');
 var sassMiddleware = require('node-sass-middleware');
+var socket_io = require('socket.io');
 
 var config = require('./config');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var client = require('./lib/client');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -71,14 +71,21 @@ app.use(function(err, req, res, next) {
     });
 });
 
+// Sockets
+app.io = socket_io();
+app.io.on('connection', function (socket) {
+    console.log('New socket connection.');
+});
+
 // Exit handling.
-var exitHandler = function() {
+var exitHandler = function(options) {
     // Save client's playback queue.
     client.save();
+    if (options.exit) {
+        process.exit();
+    }
 };
 
-process.on('exit', exitHandler);
-process.on('SIGINT', exitHandler);
-process.on('uncaughtException', exitHandler);
-
-module.exports = app;
+process.on('exit', exitHandler.bind(null, {exit: true}));
+process.on('SIGINT', exitHandler.bind(null, {exit: true}));
+process.on('uncaughtException', exitHandler.bind(null, {exit: true}));
