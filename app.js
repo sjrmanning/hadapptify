@@ -11,6 +11,7 @@ var sassMiddleware = require('node-sass-middleware');
 var config = require('./config');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var client = require('./lib/client');
 
 var app = express();
 
@@ -70,5 +71,14 @@ app.use(function(err, req, res, next) {
     });
 });
 
+// Exit handling.
+var exitHandler = function() {
+    // Save client's playback queue.
+    client.save();
+};
+
+process.on('exit', exitHandler);
+process.on('SIGINT', exitHandler);
+process.on('uncaughtException', exitHandler);
 
 module.exports = app;
