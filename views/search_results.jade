@@ -1,0 +1,7 @@
+include mixins/track
+
+h2 Search Results
+p
+  a(href='#', onclick='hideSearch()') Hide results
+each track in tracks
+    +track_info(track)

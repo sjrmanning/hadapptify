@@ -3,7 +3,7 @@ var router = express.Router();
 var client = require('../lib/client');
 var api = require('./api');
 var tracks = require('./tracks');
-var app = require('../app');
+var chat = require('../lib/chat');
 
 // Home view
 router.get('/', function(req, res) {
@@ -31,7 +31,7 @@ router.get('/', function(req, res) {
         now_playing: client.now_playing,
         username: req.session.user,
         active_users: client.active_users,
-        chatlog: app.chatlog
+        chatlog: chat.chatlog
     };
 
     if (req.query.search) {

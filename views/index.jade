@@ -13,10 +13,7 @@ block content
     h2 Now Playing
     .now-playing
         +track_name(now_playing)
-  if tracks
-    h2 Search Results
-    each track in tracks
-        +track_info(track)
+  .search_results
   if queue
     h2 Queue
     .queue

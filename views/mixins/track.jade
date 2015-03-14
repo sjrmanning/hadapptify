@@ -12,7 +12,7 @@ mixin track_info(track)
     div.track
         +track_title(track)
         |&nbsp;
-        a(href='/tracks/add/#{track.link}') Add Track
+        a(href='#' onclick='add("#{track.link}")') Add Track
 
 mixin queue_element_info(element)
     -var track = element.track
@@ -25,7 +25,7 @@ mixin queue_element_info(element)
         li|(#{element.votes} votes)
         li|added by #{element.added_by}
         li
-            a(href='/tracks/upvote/#{track.link}') ⬆
+            a(href='#' onclick='upvote("#{track.link}")') ⬆
 
 mixin track_name(track)
     -var artists = '';

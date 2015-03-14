@@ -9,11 +9,14 @@ var bodyParser = require('body-parser');
 var sass = require('node-sass');
 var sassMiddleware = require('node-sass-middleware');
 var socket_io = require('socket.io');
+var io = socket_io();
+app.io = io;
 
 var config = require('./config');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var client = require('./lib/client');
+var chat = require('./lib/chat');
 
 var sessionMiddleware = session({
     secret: 'mount whateverest',
@@ -27,7 +30,6 @@ app.chatlog = [];
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-var io = socket_io();
 io.use(function(socket, next) {
     sessionMiddleware(socket.request, socket.request.res, next);
 });
@@ -81,26 +83,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Sockets
-app.io = io;
 app.io.on('connection', function (socket) {
-    console.log('New socket connection.');
-
-    socket.on('chat_msg', function (msg) {
-        var user = socket.request.session.user;
-        var formedMsg = '<' + user + '>' + ' ' + msg;
-        app.chatlog.push(formedMsg);
-        io.emit('append_chat', formedMsg);
-    });
+    chat.setupSocket(socket);
+    client.setupSocket(socket);
 });
-
-// Exit handling.
-var exitHandler = function(options) {
-    // Save client's playback queue.
-    client.save();
-    if (options.exit) {
-        process.exit();
-    }
-};
-
-process.on('exit', exitHandler.bind(null, {exit: true}));
-process.on('SIGINT', exitHandler.bind(null, {exit: true}));
