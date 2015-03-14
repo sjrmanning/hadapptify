@@ -26,6 +26,10 @@ socket.on('search_result', function (data) {
     $('div.search_results').show("slow");
 });
 
+socket.on('update_users', function (data) {
+    $('div.active-users').html(data.html);
+});
+
 $(document).ready(function() {
     $('#chatform').submit(function(){
         socket.emit('chat_msg', $('#chat_input').val());

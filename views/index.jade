@@ -7,7 +7,7 @@ block content
         img(src='/images/logo.png', alt='hadapptify')
   .user-info Logged in as <strong>#{username}</strong>
   .active-users
-    |Active users: #{active_users.join(", ")}
+    include users
   include search_box
   if now_playing
     h2 Now Playing
@@ -17,8 +17,7 @@ block content
   if queue
     h2 Queue
     .queue
-        each element in queue._elements
-            +queue_element_info(element)
+        include queue
   h2 Chat
   ul(id="messages")
     each msg in chatlog
