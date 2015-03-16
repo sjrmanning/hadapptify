@@ -18,7 +18,7 @@ socket.on('new_queue', function (data) {
 });
 
 socket.on('append_chat', function (msg) {
-    $('#messages').prepend($('<p>').text(msg));
+    $('div.messages').prepend($('<p>').text(msg));
 });
 
 socket.on('search_result', function (data) {
