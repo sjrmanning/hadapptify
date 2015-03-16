@@ -73,6 +73,11 @@ li {
   font: 300% $font-stack;
 }
 
+.site-title img {
+  max-width: 100%;
+  height: auto;
+}
+
 .user-info {
   font-size: 0.9em;
   padding: 10px 0px 5px 0px;
