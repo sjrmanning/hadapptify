@@ -103,3 +103,8 @@ li {
   border-radius: 0 5px 5px 0;
   flex-basis: 200px;
 }
+
+.messages {
+  max-height: 200px;
+  overflow: auto;
+}
