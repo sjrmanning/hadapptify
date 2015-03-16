@@ -26,12 +26,15 @@ router.get('/', function(req, res) {
         }
     });
 
+    var chatlog = Array.prototype.slice.call(chat.chatlog);
+    chatlog.reverse();
+
     var params = {
         queue: client.queue,
         now_playing: client.now_playing,
         username: req.session.user,
         active_users: client.active_users,
-        chatlog: chat.chatlog
+        chatlog: chatlog
     };
 
     if (req.query.search) {
