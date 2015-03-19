@@ -10,7 +10,9 @@
 Run `npm install` then start server with `npm start`
 
 ## TODO
-* Queue persistence through server restarts.
-* Album cover art.
+* Admin (managing queue, pausing, skipping, etc.)
+* Flag/reporting, removing from queue by crowd majority.
+* Show progress through current song?
+* Now playing equalisier CSS animation.
+* Album cover art ?
 * Real user accounts and user persistence.
-* Frontend work.
