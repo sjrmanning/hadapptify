@@ -1,6 +1,6 @@
 var express = require('express');
 var app = module.exports = express();
-var session = require('express-session');
+var session = require('cookie-session');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -20,8 +20,7 @@ var chat = require('./lib/chat');
 
 var sessionMiddleware = session({
     secret: 'mount whateverest',
-    resave: true,
-    saveUninitialized: true
+    maxAge: 604800000
 });
 
 app.chatlog = [];
